@@ -3,174 +3,925 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom AI Solutions | Built Only If They Make Sense</title>
-    <meta name="description" content="We design and build custom AI solutions for individuals and small teams who need results, not complexity.">
-    <link rel="stylesheet" href="styles.css">
+    <title>AI Studio - Websites and Digital Products</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark: #1a1a1a;
+            --gray: #4a4a4a;
+            --light-gray: #f5f5f5;
+            --border: #e0e0e0;
+            --white: #ffffff;
+            --accent: #2a2a2a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--dark);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1557838923-2985c318be48?w=1600&q=80') center/cover;
+            opacity: 0.15;
+            animation: subtle-zoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtle-zoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            animation: fade-slide-down 1s ease;
+        }
+
+        @keyframes fade-slide-down {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero .subheadline {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            animation: fade-slide-down 1s ease 0.2s backwards;
+        }
+
+        .hero .body {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fade-slide-down 1s ease 0.4s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 48px;
+            background: white;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            animation: fade-slide-down 1s ease 0.6s backwards;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Process Section */
+        .process {
+            background: var(--light-gray);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .process-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h4 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        /* Products Section */
+        .products-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            font-size: 1.2rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin: 4rem 0 3rem;
+        }
+
+        .category-header h3 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .category-header::after {
+            content: '';
+            flex: 1;
+            height: 3px;
+            background: linear-gradient(90deg, var(--dark) 0%, transparent 100%);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-content strong {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-content p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-content em {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-style: normal;
+            opacity: 0.8;
+        }
+
+        /* Special Products */
+        .special-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .special-card {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .special-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Digital Products Categories */
+        .product-category {
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+        }
+
+        .product-category h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: white;
+        }
+
+        .benefits-section h2 {
+            color: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .benefit-card h4 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .benefit-card p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Quote Form Section */
+        .quote-section {
+            background: var(--light-gray);
+        }
+
+        form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border);
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--dark);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-note {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            color: var(--gray);
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        footer h4 {
+            color: white;
+            margin-bottom: 1rem;
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .process-grid,
+            .product-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            form {
+                padding: 2rem;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
 </head>
 <body>
-    <header class="hero">
-        <nav>
-            <div class="nav-container">
-                <div class="logo">AI Studio</div>
-                <a href="#quote" class="nav-cta">Request a quote</a>
-            </div>
-        </nav>
-
-        <div class="hero-content">
-            <h1>Custom AI solutions. Built only if they make sense.</h1>
-            <p class="value-proposition">We design and build custom AI solutions for individuals and small teams who need results, not complexity.</p>
-            <p class="subtext">You describe what you need. We analyze it, send a quote, and build only if you approve. No contracts. No noise.</p>
-            <div class="cta-group">
-                <a href="#quote" class="btn btn-primary">Request a quote</a>
-                <a href="#quote" class="btn btn-secondary">Describe your idea</a>
-            </div>
-        </div>
-    </header>
-
-    <section id="how-it-works" class="section">
+    <section class="hero">
         <div class="container">
-            <h2>How It Works</h2>
+            <h1>We build websites and digital products for people who need results, not complexity</h1>
+            <p class="subheadline">A small AI studio that builds what you need. You explain it, we quote it, you approve it, we deliver it.</p>
+            <p class="body">We create finished websites for businesses and individuals, and deliver digital products as ready-to-use files—restored photos, animated memories, professional visuals, videos. No ongoing contracts. No technical jargon. You only pay if you accept our quote.</p>
+            <a href="#quote" class="cta-button">Request a quote</a>
+        </div>
+    </section>
 
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">01</div>
-                    <h3>You explain the problem</h3>
-                    <p>Write what you want to achieve. Rough ideas are fine.</p>
+    <section class="process">
+        <div class="container">
+            <h2 class="fade-in">How it works</h2>
+
+            <div class="process-grid">
+                <div class="process-step fade-in">
+                    <div class="process-number">01</div>
+                    <h4>You describe what you need</h4>
+                    <p>Tell us what you want to build or create. A website for your restaurant. A video from family photos. A restored old photograph. Be as specific or general as you like.</p>
                 </div>
 
-                <div class="step">
-                    <div class="step-number">02</div>
-                    <h3>We analyze and quote</h3>
-                    <p>We review feasibility, scope, and effort. You receive a clear price.</p>
+                <div class="process-step fade-in">
+                    <div class="process-number">02</div>
+                    <h4>We analyze and send you a quote</h4>
+                    <p>We review your request, estimate the work, and send you a clear quote with a timeline. No obligation.</p>
                 </div>
 
-                <div class="step">
-                    <div class="step-number">03</div>
-                    <h3>You decide</h3>
-                    <p>If you accept, we build. If not, nothing owed.</p>
+                <div class="process-step fade-in">
+                    <div class="process-number">03</div>
+                    <h4>You decide</h4>
+                    <p>Accept the quote and we start immediately. Decline it and you owe nothing. No pressure.</p>
                 </div>
 
-                <div class="step">
-                    <div class="step-number">04</div>
-                    <h3>Delivery</h3>
-                    <p>You receive the solution, documentation, and handover support.</p>
+                <div class="process-step fade-in">
+                    <h4>We deliver</h4>
+                    <div class="process-number">04</div>
+                    <p>You receive your finished website or digital product, ready to use.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="what-we-build" class="section section-dark">
+    <section id="what-we-build">
         <div class="container">
-            <h2>What We Build</h2>
-            <p class="section-intro">Everything is custom. No fixed packages.</p>
+            <h2 class="fade-in">What we build</h2>
+            <p class="products-intro fade-in">Complete, finished products. You describe what you need, we deliver it working and ready to use.</p>
 
-            <div class="services-grid">
-                <div class="service">
-                    <h3>AI chatbots</h3>
-                    <p>Customer support, internal assistants, personal tools.</p>
+            <div class="category-header fade-in">
+                <h3>Websites</h3>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Business websites" class="product-image">
+                    <div class="product-content">
+                        <strong>Business websites</strong>
+                        <p>Simple, clear websites for small businesses. 1–3 pages. Contact forms, service descriptions, photo galleries. Built to explain what you do and help people reach you.</p>
+                        <em>For: local businesses, consultants, freelancers, shops</em>
+                    </div>
                 </div>
 
-                <div class="service">
-                    <h3>AI automation</h3>
-                    <p>Workflows, scripts, integrations, task reduction.</p>
+                <div class="product-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Restaurant websites" class="product-image">
+                    <div class="product-content">
+                        <strong>Restaurant websites</strong>
+                        <p>Menus, location, contact info, photos of your space and food. Clean layout, easy to navigate on phones.</p>
+                        <em>For: restaurants, cafes, bars, food trucks</em>
+                    </div>
                 </div>
 
-                <div class="service">
-                    <h3>AI-generated content</h3>
-                    <p>Text, images, structured outputs, simple video workflows.</p>
+                <div class="product-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80" alt="Portfolio websites" class="product-image">
+                    <div class="product-content">
+                        <strong>Personal and portfolio websites</strong>
+                        <p>Show your work, share your story, or present your services. Simple and direct.</p>
+                        <em>For: artists, photographers, writers, professionals</em>
+                    </div>
                 </div>
 
-                <div class="service">
-                    <h3>Custom AI tools</h3>
-                    <p>Small utilities built around your exact need.</p>
-                </div>
-
-                <div class="service">
-                    <h3>Websites with AI integration</h3>
-                    <p>Landing pages, dashboards, embedded AI features.</p>
-                </div>
-
-                <div class="service">
-                    <h3>One-off AI solutions</h3>
-                    <p>If it's specific, we build it.</p>
+                <div class="product-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&q=80" alt="AI Assistant websites" class="product-image">
+                    <div class="product-content">
+                        <strong>Websites with built-in assistants</strong>
+                        <p>A website that can answer common questions, help visitors request quotes, or guide them through your services. No app required.</p>
+                        <em>For: service businesses, consultants, anyone who answers the same questions repeatedly</em>
+                    </div>
                 </div>
             </div>
 
-            <p class="core-rule">Core rule: if you can explain the problem, we can design a solution.</p>
+            <h4 class="fade-in" style="font-size: 1.5rem; margin: 3rem 0 2rem;">Special websites:</h4>
+
+            <div class="special-products">
+                <div class="special-card fade-in">
+                    <strong>Family memory websites</strong>
+                    <p>A private space to collect and share family stories, photos, and history</p>
+                </div>
+
+                <div class="special-card fade-in">
+                    <strong>Personal biography websites</strong>
+                    <p>Document a life story in a clean, accessible format</p>
+                </div>
+
+                <div class="special-card fade-in">
+                    <strong>Memorial websites</strong>
+                    <p>Honor and remember someone with photos, stories, and memories</p>
+                </div>
+
+                <div class="special-card fade-in">
+                    <strong>Gift websites</strong>
+                    <p>A custom digital gift for anniversaries, retirements, milestones</p>
+                </div>
+            </div>
+
+            <div class="category-header fade-in" style="margin-top: 5rem;">
+                <h3>Digital Products</h3>
+            </div>
+
+            <p class="products-intro fade-in">These are delivered as files: images, videos, PDFs. One-time creation, yours to keep and use.</p>
+
+            <div class="product-category fade-in">
+                <h4>Memory and emotion</h4>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=800&q=80" alt="Animated photos" class="product-image">
+                        <div class="product-content">
+                            <strong>Animated family photos</strong>
+                            <p>Bring old photos to life with subtle motion</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1452859805140-db77ee1a2ec4?w=800&q=80" alt="Photo restoration" class="product-image">
+                        <div class="product-content">
+                            <strong>Old photo restoration</strong>
+                            <p>Remove damage, improve clarity, preserve memories</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=800&q=80" alt="Colorization" class="product-image">
+                        <div class="product-content">
+                            <strong>Colorization</strong>
+                            <p>Add realistic color to black and white photos</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800&q=80" alt="Memory videos" class="product-image">
+                        <div class="product-content">
+                            <strong>Memory videos</strong>
+                            <p>Turn childhood photos into short moving sequences</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?w=800&q=80" alt="Digital albums" class="product-image">
+                        <div class="product-content">
+                            <strong>Digital family albums</strong>
+                            <p>Organized, designed collections of photos delivered as PDFs or interactive files</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1.5rem;"><em>For: families, personal archives, gifts</em></p>
+            </div>
+
+            <div class="product-category fade-in">
+                <h4>Gifts</h4>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=800&q=80" alt="Birthday videos" class="product-image">
+                        <div class="product-content">
+                            <strong>Birthday videos</strong>
+                            <p>Personal video montages from photos and clips</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1522673607211-8e4bf24850d7?w=800&q=80" alt="Anniversary videos" class="product-image">
+                        <div class="product-content">
+                            <strong>Anniversary videos</strong>
+                            <p>Celebrate relationships with curated visuals and music</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?w=800&q=80" alt="Retirement videos" class="product-image">
+                        <div class="product-content">
+                            <strong>Retirement videos</strong>
+                            <p>Honor a career with photos and memories</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&q=80" alt="Memorial videos" class="product-image">
+                        <div class="product-content">
+                            <strong>Memorial videos</strong>
+                            <p>Respectful tributes for commemorations or services</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" alt="Digital posters" class="product-image">
+                        <div class="product-content">
+                            <strong>Personalized digital posters</strong>
+                            <p>Custom-designed visual keepsakes</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1.5rem;"><em>For: personal occasions, family events, tributes</em></p>
+            </div>
+
+            <div class="product-category fade-in">
+                <h4>Restaurants and local businesses</h4>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Food photography" class="product-image">
+                        <div class="product-content">
+                            <strong>Food photography enhancement</strong>
+                            <p>Turn phone photos into professional-looking images</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" alt="Dish visuals" class="product-image">
+                        <div class="product-content">
+                            <strong>Dish recreation visuals</strong>
+                            <p>High-quality images of your menu items</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80" alt="Menu images" class="product-image">
+                        <div class="product-content">
+                            <strong>Full menu image sets</strong>
+                            <p>Complete visual catalog of your offerings</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80" alt="Social media" class="product-image">
+                        <div class="product-content">
+                            <strong>Social media visuals</strong>
+                            <p>Ready-to-post images for Instagram, Facebook, etc.</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1.5rem;"><em>For: restaurants, cafes, caterers, food businesses</em></p>
+            </div>
+
+            <div class="product-category fade-in">
+                <h4>Profiles and identity</h4>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Profile photos" class="product-image">
+                        <div class="product-content">
+                            <strong>Profile photo improvement</strong>
+                            <p>Enhance selfies or casual photos for professional use</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" alt="Professional portraits" class="product-image">
+                        <div class="product-content">
+                            <strong>Professional portraits from selfies</strong>
+                            <p>Turn informal photos into polished headshots</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80" alt="Intro videos" class="product-image">
+                        <div class="product-content">
+                            <strong>Short intro videos</strong>
+                            <p>15–30 second personal or professional introductions</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1.5rem;"><em>For: LinkedIn, resumes, websites, freelancers</em></p>
+            </div>
+
+            <div class="product-category fade-in">
+                <h4>Utility visuals</h4>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Infographics" class="product-image">
+                        <div class="product-content">
+                            <strong>Documents to infographics</strong>
+                            <p>Turn text-heavy documents into clear visuals</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Presentations" class="product-image">
+                        <div class="product-content">
+                            <strong>Text to slides</strong>
+                            <p>Convert notes or outlines into presentation slides</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80" alt="Visual communication" class="product-image">
+                        <div class="product-content">
+                            <strong>Notes to visuals</strong>
+                            <p>Make information easier to understand and share</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1.5rem;"><em>For: presentations, reports, education, communication</em></p>
+            </div>
         </div>
     </section>
 
-    <section id="why-this-works" class="section">
+    <section class="benefits-section">
         <div class="container">
-            <h2>Why This Setup Works</h2>
+            <h2 class="fade-in">Why clients choose this approach</h2>
 
-            <ul class="benefits-list">
-                <li>Fast execution</li>
-                <li>No long-term commitment</li>
-                <li>You only pay if you accept the quote</li>
-                <li>Human judgment + AI implementation</li>
-                <li>Direct communication with the builders</li>
-                <li>No upsells. No retainers. No unnecessary layers.</li>
-            </ul>
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <h4>No risk</h4>
+                    <p>You see the quote before committing. If it doesn't fit your budget or timeline, you owe nothing.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <h4>No complexity</h4>
+                    <p>You explain what you need in plain language. We handle the rest.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <h4>Fast and direct</h4>
+                    <p>No meetings unless necessary. No proposals. No project management overhead. We focus on building.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <h4>Human judgment, supported by tools</h4>
+                    <p>We use AI to speed up work and improve quality, but every decision is made by us. You're working with people, not a system.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <h4>Pay once, keep it forever</h4>
+                    <p>Websites and digital products are delivered complete. No subscriptions. No recurring fees unless you choose ongoing support.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="platforms" class="section section-dark">
+    <section id="quote" class="quote-section">
         <div class="container">
-            <h2>Visibility & Platforms</h2>
-            <p>We also offer services through public marketplaces for transparency and discoverability, including platforms like Etsy.</p>
-            <p>This allows clients to find us, review listings, and request work in familiar environments.</p>
-        </div>
-    </section>
+            <h2 class="fade-in">Request a quote</h2>
+            <p class="products-intro fade-in">Describe what you need. We'll review it and send you a quote within 2 business days.</p>
 
-    <section id="quote" class="section section-form">
-        <div class="container">
-            <h2>Request a Quote</h2>
-            <p class="section-intro">Simple process. No account.</p>
-
-            <form id="quote-form" class="quote-form" action="https://formspree.io/f/xeoqqbbg" method="POST">
+            <form action="https://formspree.io/f/xeoqqbbg" method="POST" class="fade-in">
                 <div class="form-group">
-                    <label for="description">Short description of what you need</label>
-                    <textarea id="description" name="description" rows="4" required placeholder="Describe your problem or project..."></textarea>
+                    <label for="description">What do you need?</label>
+                    <textarea id="description" name="description" required placeholder="Describe your project. What do you want to build or create? Include any details that help us understand."></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="context">Context or goal</label>
-                    <textarea id="context" name="context" rows="3" required placeholder="What are you trying to achieve?"></textarea>
+                    <label for="budget">Budget (optional)</label>
+                    <input type="text" id="budget" name="budget" placeholder="If you have a budget in mind, share it. This helps us shape the proposal.">
                 </div>
 
                 <div class="form-group">
-                    <label for="budget">Budget range (optional)</label>
-                    <input type="text" id="budget" name="budget" placeholder="e.g. $500-1000">
+                    <label for="email">Your email</label>
+                    <input type="email" id="email" name="email" required placeholder="Where should we send the quote?">
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Email for reply</label>
-                    <input type="email" id="email" name="email" required placeholder="your@email.com">
-                </div>
+                <input type="hidden" name="_subject" value="New Quote Request - Website/Digital Product">
 
-                <input type="hidden" name="_subject" value="New AI Services Quote Request">
-                <input type="hidden" name="_replyto" value="davidemiron30@gmail.com">
+                <button type="submit" class="cta-button" style="width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">Send request</button>
 
-                <button type="submit" class="btn btn-primary">Send request</button>
-
-                <p class="form-note">We respond with analysis and a clear quote.</p>
+                <p class="form-note">No account required. No commitment. We'll respond within 2 business days.</p>
             </form>
-
-            <div id="form-success" class="form-message" style="display: none;">
-                <p>Thank you. We'll analyze your request and respond with a clear quote.</p>
-            </div>
         </div>
     </section>
 
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <p>Two builders. One focus: useful AI solutions.</p>
-            <p>No fake guarantees. No legal theater.</p>
-            <p>Contact via form or marketplace profiles.</p>
+            <div class="footer-content">
+                <div class="footer-section fade-in">
+                    <h4>Contact</h4>
+                    <p>davidemiron30@gmail.com</p>
+                </div>
+
+                <div class="footer-section fade-in">
+                    <h4>About</h4>
+                    <p>A small AI studio run by two partners. We build websites and digital products for individuals and small businesses.</p>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
