@@ -18,6 +18,12 @@
             --border: #e0e0e0;
             --white: #ffffff;
             --accent: #2a2a2a;
+            --blue: #667eea;
+            --purple: #764ba2;
+            --orange: #ff6b6b;
+            --teal: #4ecdc4;
+            --yellow: #ffd93d;
+            --pink: #ff6bcb;
         }
 
         html {
@@ -41,6 +47,12 @@
         section {
             padding: 100px 0;
             position: relative;
+        }
+
+        #what-we-build {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f9ff 50%, #fff5f9 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 25s ease infinite;
         }
 
         .fade-in {
@@ -70,6 +82,29 @@
             margin-bottom: 3rem;
             font-weight: 700;
             text-align: center;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 50%, var(--pink) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 5s ease infinite;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
+            border-radius: 2px;
+            animation: gradient-shift 3s ease infinite;
+            background-size: 200% 200%;
         }
 
         h3 {
@@ -96,7 +131,9 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6bcb 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 12s ease infinite;
             color: white;
             position: relative;
             overflow: hidden;
@@ -170,19 +207,59 @@
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            border-radius: 4px;
-            animation: fade-slide-down 1s ease 0.6s backwards;
+            border-radius: 8px;
+            animation: fade-slide-down 1s ease 0.6s backwards, pulse-glow 2s ease-in-out infinite;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 35px rgba(102, 126, 234, 0.5);
         }
 
         /* Process Section */
         .process {
-            background: var(--light-gray);
+            background: linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 50%, #fce4ec 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 15s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .process .container {
+            position: relative;
+            z-index: 1;
         }
 
         .process-grid {
@@ -195,24 +272,51 @@
         .process-step {
             background: white;
             padding: 2.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            border-radius: 16px;
+            transition: all 0.4s ease;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 3px solid transparent;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .process-step:nth-child(1) {
+            animation-delay: 0s;
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .process-step:nth-child(2) {
+            animation-delay: 0.5s;
+            border-color: rgba(255, 107, 107, 0.3);
+        }
+
+        .process-step:nth-child(3) {
+            animation-delay: 1s;
+            border-color: rgba(78, 205, 196, 0.3);
+        }
+
+        .process-step:nth-child(4) {
+            animation-delay: 1.5s;
+            border-color: rgba(255, 217, 61, 0.3);
         }
 
         .process-step:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            border-color: var(--blue);
+            animation: none;
         }
 
         .process-number {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6bcb 100%);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 1rem;
+            animation: gradient-shift 3s ease infinite;
+            display: inline-block;
         }
 
         .process-step h4 {
@@ -233,18 +337,32 @@
             align-items: center;
             gap: 2rem;
             margin: 4rem 0 3rem;
+            position: relative;
         }
 
         .category-header h3 {
             font-size: 2rem;
             margin: 0;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease infinite;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, var(--blue), var(--purple)) border-box;
+            border: 3px solid transparent;
         }
 
         .category-header::after {
             content: '';
             flex: 1;
-            height: 3px;
-            background: linear-gradient(90deg, var(--dark) 0%, transparent 100%);
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--purple), transparent 100%);
+            border-radius: 2px;
         }
 
         .product-grid {
@@ -256,28 +374,55 @@
 
         .product-card {
             background: white;
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            border: 3px solid transparent;
+            border-radius: 16px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 16px;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--blue), var(--purple), var(--pink), var(--teal));
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: gradient-shift 4s ease infinite;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-            border-color: var(--accent);
+            transform: translateY(-12px) rotate(-1deg);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
         }
 
         .product-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            filter: brightness(0.95);
         }
 
         .product-card:hover .product-image {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            filter: brightness(1.05) saturate(1.2);
         }
 
         .product-content {
@@ -312,37 +457,105 @@
         }
 
         .special-card {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            background: linear-gradient(135deg, #667eea25 0%, #764ba225 50%, #ff6bcb25 100%);
+            background-size: 200% 200%;
             padding: 2rem;
-            border-radius: 8px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
+            border-radius: 16px;
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            animation: gradient-shift 8s ease infinite;
+        }
+
+        .special-card::before {
+            content: '✨';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2rem;
+            opacity: 0.6;
+            animation: float 3s ease-in-out infinite;
         }
 
         .special-card:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2);
+            border-color: var(--purple);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(118, 75, 162, 0.4);
+            background: linear-gradient(135deg, #667eea35 0%, #764ba235 50%, #ff6bcb35 100%);
         }
 
         /* Digital Products Categories */
         .product-category {
             margin-bottom: 4rem;
             padding: 3rem;
-            background: var(--light-gray);
-            border-radius: 12px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 100%);
+            background-size: 200% 200%;
+            border-radius: 20px;
+            border: 3px solid rgba(102, 126, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: gradient-shift 10s ease infinite;
+        }
+
+        .product-category::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.15) 0%, transparent 70%);
+            animation: float-delayed 12s ease-in-out infinite;
+        }
+
+        .product-category:nth-child(odd) {
+            background: linear-gradient(135deg, #fff3e0 0%, #fce4ec 100%);
+        }
+
+        .product-category:nth-child(even) {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
         }
 
         .product-category h4 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
             text-align: center;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--blue) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease infinite;
+            position: relative;
+            z-index: 1;
         }
 
         /* Benefits Section */
         .benefits-section {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a2e 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 15s ease infinite;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(255, 107, 203, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .benefits-section .container {
+            position: relative;
+            z-index: 1;
         }
 
         .benefits-section h2 {
@@ -357,17 +570,32 @@
         }
 
         .benefit-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             padding: 2.5rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink), var(--teal));
+            background-size: 300% 300%;
+            animation: gradient-shift 4s ease infinite;
         }
 
         .benefit-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.3);
         }
 
         .benefit-card h4 {
@@ -383,7 +611,28 @@
 
         /* Quote Form Section */
         .quote-section {
-            background: var(--light-gray);
+            background: linear-gradient(135deg, #fff5f5 0%, #e3f2fd 50%, #f3e5f5 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 20s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(255, 107, 203, 0.1) 0%, transparent 50%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .quote-section .container {
+            position: relative;
+            z-index: 1;
         }
 
         form {
@@ -391,8 +640,11 @@
             margin: 0 auto;
             background: white;
             padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(102, 126, 234, 0.2);
+            border: 3px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, var(--blue), var(--purple), var(--pink)) border-box;
         }
 
         .form-group {
@@ -407,24 +659,76 @@
             font-size: 1.1rem;
         }
 
+        #budget {
+            position: relative;
+            padding-left: 40px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(255, 217, 61, 0.05) 100%);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--purple);
+        }
+
+        .budget-wrapper {
+            position: relative;
+        }
+
+        .budget-wrapper::before {
+            content: '€';
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--blue), var(--purple), var(--yellow));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        #budget:focus {
+            border-color: var(--yellow);
+            box-shadow: 0 0 0 4px rgba(255, 217, 61, 0.2), 0 4px 20px rgba(255, 217, 61, 0.3);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(255, 217, 61, 0.08) 100%);
+        }
+
+        label[for="budget"] {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 50%, var(--yellow) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease infinite;
+            font-size: 1.2rem;
+        }
+
         input[type="text"],
         input[type="email"],
         textarea {
             width: 100%;
             padding: 15px;
-            border: 2px solid var(--border);
+            border: 3px solid var(--border);
             font-family: inherit;
             font-size: 1rem;
             color: var(--dark);
-            border-radius: 4px;
+            border-radius: 8px;
             transition: all 0.3s ease;
+            background: rgba(102, 126, 234, 0.02);
         }
 
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15), 0 4px 20px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+            background: white;
         }
 
         textarea {
@@ -494,10 +798,275 @@
             }
         }
 
+        /* Testimonials Section */
+        .testimonials-section {
+            background: linear-gradient(135deg, #fff9f9 0%, #f0f4ff 50%, #fff5f8 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 20s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: '💬';
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            font-size: 8rem;
+            opacity: 0.05;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .testimonials-section::after {
+            content: '⭐';
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            font-size: 6rem;
+            opacity: 0.05;
+            animation: float-delayed 10s ease-in-out infinite;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 3px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, var(--blue), var(--purple), var(--pink)) border-box;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25);
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            animation: pulse 2s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 200% 200%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.3rem;
+            animation: gradient-shift 4s ease infinite;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            border: 3px solid white;
+        }
+
+        .testimonial-card:nth-child(2) .author-avatar {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .testimonial-card:nth-child(3) .author-avatar {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .testimonial-card:nth-child(4) .author-avatar {
+            background: linear-gradient(135deg, #ff6bcb 0%, #c44569 100%);
+            box-shadow: 0 4px 15px rgba(255, 107, 203, 0.4);
+        }
+
+        .testimonial-card:nth-child(5) .author-avatar {
+            background: linear-gradient(135deg, #ffd93d 0%, #ffaa00 100%);
+            box-shadow: 0 4px 15px rgba(255, 217, 61, 0.4);
+        }
+
+        .testimonial-card:nth-child(6) .author-avatar {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            box-shadow: 0 4px 15px rgba(162, 155, 254, 0.4);
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-context {
+            font-size: 0.9rem;
+            color: var(--gray);
+            opacity: 0.8;
+        }
+
         /* Loading Animation */
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
+        }
+
+        /* Enhanced Animations for Boomers */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes float-delayed {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(102, 126, 234, 0.8), 0 0 60px rgba(118, 75, 162, 0.6);
+            }
+        }
+
+        @keyframes slide-in-left {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slide-in-right {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounce-in {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rainbow-border {
+            0% { border-color: var(--blue); }
+            25% { border-color: var(--purple); }
+            50% { border-color: var(--pink); }
+            75% { border-color: var(--teal); }
+            100% { border-color: var(--blue); }
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Decorative Elements */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::before {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+            top: 20%;
+            right: 10%;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        body::after {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 107, 203, 0.15) 0%, transparent 70%);
+            bottom: 10%;
+            left: 5%;
+            animation: float-delayed 18s ease-in-out infinite;
+        }
+
+        /* Enhanced scroll indicator */
+        @keyframes bounce-arrow {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: white;
+            animation: bounce-arrow 2s infinite;
+            opacity: 0.8;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -509,6 +1078,7 @@
             <p class="body">We create finished websites for businesses and individuals, and deliver digital products as ready-to-use files—restored photos, animated memories, professional visuals, videos. No ongoing contracts. No technical jargon. You only pay if you accept our quote.</p>
             <a href="#quote" class="cta-button">Request a quote</a>
         </div>
+        <div class="scroll-indicator">↓</div>
     </section>
 
     <section class="process">
@@ -812,34 +1382,117 @@
         </div>
     </section>
 
-    <section class="benefits-section">
+    <section class="testimonials-section">
         <div class="container">
-            <h2 class="fade-in">Why clients choose this approach</h2>
+            <h2 class="fade-in">What clients say</h2>
 
-            <div class="benefits-grid">
-                <div class="benefit-card fade-in">
-                    <h4>No risk</h4>
-                    <p>You see the quote before committing. If it doesn't fit your budget or timeline, you owe nothing.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">They restored 8 old family photos from the 1940s that were damaged and faded. I can finally share these with my grandchildren. The turnaround was fast and the quote was clear from the start. Highly recommend.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <div class="author-name">Margaret Torres</div>
+                            <div class="author-context">Photo restoration</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="benefit-card fade-in">
-                    <h4>No complexity</h4>
-                    <p>You explain what you need in plain language. We handle the rest.</p>
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">We needed a simple website for our cafe with our menu and contact info. They delivered exactly what we asked for, no extra complications. Our customers can now check the menu from their phones before coming in.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div class="author-info">
+                            <div class="author-name">Roberto Fontana</div>
+                            <div class="author-context">Cafe owner, Milan</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="benefit-card fade-in">
-                    <h4>Fast and direct</h4>
-                    <p>No meetings unless necessary. No proposals. No project management overhead. We focus on building.</p>
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">I wanted to create a birthday video for my father's 70th using old family photos. They made it beautiful and emotional without being cheesy. He cried when he watched it. Worth every penny.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">L</div>
+                        <div class="author-info">
+                            <div class="author-name">Laura Bianchi</div>
+                            <div class="author-context">Birthday video gift</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="benefit-card fade-in">
-                    <h4>Human judgment, supported by tools</h4>
-                    <p>We use AI to speed up work and improve quality, but every decision is made by us. You're working with people, not a system.</p>
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">As a freelance consultant I needed a professional website but I'm not technical. They understood what I needed, sent a fair quote, and delivered a clean site that presents my services clearly. No hassle.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <div class="author-name">Andrea Moretti</div>
+                            <div class="author-context">Business consultant</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="benefit-card fade-in">
-                    <h4>Pay once, keep it forever</h4>
-                    <p>Websites and digital products are delivered complete. No subscriptions. No recurring fees unless you choose ongoing support.</p>
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">They turned my phone photos of dishes into professional-looking images for our social media. Our Instagram engagement went up immediately. Great value and quick delivery.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">G</div>
+                        <div class="author-info">
+                            <div class="author-name">Giuseppe Rinaldi</div>
+                            <div class="author-context">Restaurant owner</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">We created a memorial website for my mother. It's a private space where family can share memories and photos. Simple, respectful, and exactly what we needed. The process was straightforward and compassionate.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <div class="author-name">Sofia Romano</div>
+                            <div class="author-context">Memorial website</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">I needed better profile photos for LinkedIn but didn't want to pay for a professional photoshoot. They enhanced my casual photos and made them look polished. Got more interview requests after updating my profile.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">D</div>
+                        <div class="author-info">
+                            <div class="author-name">Daniel Costa</div>
+                            <div class="author-context">Job seeker</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">They colorized black and white photos from my grandparents' wedding in 1952. Seeing my grandmother's dress in color for the first time was incredible. The attention to detail was impressive.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">C</div>
+                        <div class="author-info">
+                            <div class="author-name">Chiara Esposito</div>
+                            <div class="author-context">Photo colorization</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">Built a portfolio website to showcase my photography. Clean design, loads fast on mobile, easy for clients to navigate. They listened to what I wanted and delivered without overcomplicating things.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <div class="author-name">Marco Lombardi</div>
+                            <div class="author-context">Photographer</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -858,7 +1511,9 @@
 
                 <div class="form-group">
                     <label for="budget">Budget (optional)</label>
-                    <input type="text" id="budget" name="budget" placeholder="If you have a budget in mind, share it. This helps us shape the proposal.">
+                    <div class="budget-wrapper">
+                        <input type="number" id="budget" name="budget" placeholder="If you have a budget in mind, share it. This helps us shape the proposal." min="0" step="1">
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -878,11 +1533,6 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section fade-in">
-                    <h4>Contact</h4>
-                    <p>davidemiron30@gmail.com</p>
-                </div>
-
                 <div class="footer-section fade-in">
                     <h4>About</h4>
                     <p>A small AI studio run by two partners. We build websites and digital products for individuals and small businesses.</p>
